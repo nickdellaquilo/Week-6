@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 input;
 
     private bool isOpen;
-
+    
     public PeacockCooldownBar cooldownBar;
     [SerializeField]private float openCoolDown = 5; //once peacock's feathers have been closed, you have to wait 5(?) seconds before being able to open them again
     [SerializeField]private float openTimer; //feathers can only stay open for 3(?) seconds, initally was set to 0
@@ -25,12 +25,13 @@ public class PlayerController : MonoBehaviour
     //public PeacockCooldownBar openFeathersTimeLeft;
     //[SerializeField] private float maxOpenTimeLeft = 10f;
 
-
+    [SerializeField] private float bulletSpeed = 5f;
+    [SerializeField] private Transform bulletParent;
     
 
     float TESTtimer = 0;
 
-    public GameObject bullet;
+    public GameObject bulletPrefab;
 
     Vector2 curPos;
 
@@ -84,9 +85,7 @@ public class PlayerController : MonoBehaviour
 
         cooldownBar.SetCooldownValue(openCoolDown);
 
-        if (Input.GetKeyDown(KeyCode.X)) {
-            Instantiate(bullet, bullet.transform.position, Quaternion.identity);
-        }
+        
 
         /*
         TESTtimer += Time.deltaTime;
@@ -119,6 +118,17 @@ public class PlayerController : MonoBehaviour
 
                 StartCoroutine(Move(targetPos));
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            GameObject bullet = Instantiate(bulletPrefab, bulletParent.transform.position, Quaternion.identity);
+
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 shootDirection = (mousePosition - (Vector2)transform.position).normalized;
+
+            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+            bulletRB.velocity = bulletSpeed * shootDirection; //bulletParent.transform.position; 
         }
 
         healthBar.SetHealth(health);

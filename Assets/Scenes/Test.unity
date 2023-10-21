@@ -449,11 +449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d071d046d7e007c46a50d37e84a13f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1784726755}
-  smoothSpeed: 1
-  offset: {x: 0, y: 0, z: 0}
-  targetZoom: 5
-  zoomSpeed: 1
 --- !u!1 &977791442
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +788,14 @@ PrefabInstance:
       propertyPath: cooldownBar
       value: 
       objectReference: {fileID: 2103247173}
+    - target: {fileID: 2536522949988356664, guid: 0260801a075c3dd46ab3ce1882b07227, type: 3}
+      propertyPath: bulletParent
+      value: 
+      objectReference: {fileID: 1310330420}
+    - target: {fileID: 2536522949988356664, guid: 0260801a075c3dd46ab3ce1882b07227, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 3587148472761841285, guid: 5723729faf7368140840d88d20ca7c75, type: 3}
     - target: {fileID: 2610930910508265317, guid: 0260801a075c3dd46ab3ce1882b07227, type: 3}
       propertyPath: m_Name
       value: peacock

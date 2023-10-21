@@ -6,15 +6,15 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody2D rb;
     public float speed = 5f;
-    GameObject enemy;
-    void Start()
+    
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
-        rb = GetComponent<Rigidbody2D>();
-
-        Vector2 dir = (enemy.transform.position - transform.position).normalized * speed;
-        rb.velocity = new Vector2(dir.x, dir.y);
-
+        if (collision.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+        }
         Destroy(this.gameObject, 2);
     }
+    
 }
