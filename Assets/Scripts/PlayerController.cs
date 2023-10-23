@@ -180,9 +180,10 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            //Debug.Log("ouch");
             if (!isOpen)
             {
-                health -= 5; // we can adjust this later
+                health -= 10; // we can adjust this later
             }
             else
             {
