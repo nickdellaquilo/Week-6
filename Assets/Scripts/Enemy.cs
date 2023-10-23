@@ -9,16 +9,20 @@ public class Enemy : MonoBehaviour
     public float speed = 3f;
     bool tooClose = false;
     int health = 100;
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        healthBar.SetMaxHealth(health);
+        healthBar.SetHealth(health);
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthBar.SetHealth(health);
         if (health <= 0)
         {
             Destroy(this.gameObject);
