@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float bulletSpeed = 5f;
     [SerializeField] private Transform bulletParent;
-    
+
 
     float TESTtimer = 0;
 
@@ -85,7 +85,23 @@ public class PlayerController : MonoBehaviour
 
         cooldownBar.SetCooldownValue(openCoolDown);
 
+        input.x = Input.GetAxis("Horizontal");
+        input.y = Input.GetAxis("Vertical");
         
+        if(input == Vector2.zero)
+        {
+            animator.SetFloat("Horizontal", input.x);
+            animator.SetFloat("Vertical", input.y);
+        }
+        if (input.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        if (input.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        transform.Translate(input * Time.deltaTime * moveSpeed);
 
         /*
         TESTtimer += Time.deltaTime;
@@ -99,7 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("openFeathers", false);
             TESTtimer = 0;
-        } */
+        } 
 
         if(!isMoving)
         {
@@ -109,18 +125,26 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Horizontal", input.x);
             animator.SetFloat("Vertical", input.y);
 
-
+            if(input.x < 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            if(input.x > 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
             if(input != Vector2.zero)
             {
                 animator.SetBool("isMoving", true);
+                transform.Translate(input * Time.deltaTime * bulletSpeed);
 
-                Vector2 targetPos = curPos + input;
+                //Vector2 targetPos = curPos + input;
 
-                StartCoroutine(Move(targetPos));
+                //StartCoroutine(Move(targetPos));
             }
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletParent.transform.position, Quaternion.identity);
 
