@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float lineOfSight = 3f;
     public float speed = 3f;
     bool tooClose = false;
+    int health = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
         float distFromPlayer = Vector2.Distance(player.transform.position, transform.position);
         if (distFromPlayer > 3)
         {
@@ -53,6 +58,11 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             tooClose = true;
+        }
+
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            health -= 10;
         }
     }
 }
