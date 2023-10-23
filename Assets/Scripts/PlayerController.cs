@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 input;
 
     private bool isOpen;
+
+    public AudioSource audioSource;
     
     public PeacockCooldownBar cooldownBar;
     [SerializeField]private float openCoolDown = 5; //once peacock's feathers have been closed, you have to wait 5(?) seconds before being able to open them again
@@ -184,6 +186,7 @@ public class PlayerController : MonoBehaviour
             if (!isOpen)
             {
                 health -= 10; // we can adjust this later
+                audioSource.Play();
             }
             else
             {

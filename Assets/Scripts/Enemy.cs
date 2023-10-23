@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     int health = 100;
     public HealthBar healthBar;
 
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             health -= 10;
+            audioSource.Play();
         }
     }
 }
